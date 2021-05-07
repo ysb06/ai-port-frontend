@@ -1,0 +1,10 @@
+.nav-icon {
+    width: 1.2rem;
+    height: 1.2rem;
+    margin: 0 10px 0 0;
+    fill: var(--light);
+}
+
+.nav-title {
+    font-size: 1.5rem;
+}
