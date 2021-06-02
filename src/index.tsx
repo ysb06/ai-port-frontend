@@ -2,27 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+
+import rootReducer from './store';
 
 import Home from './pages/Home'
-import FallBack from './pages/FallBack'
+import { RedirectWithStatus } from './pages/FallBack'
 import TopNavigator from './components/TopNavigator';
+import Mask from './pages/Mask';
 
 import "bootswatch/dist/flatly/bootstrap.min.css";
 import './index.css';
 
+const store = createStore(rootReducer)
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <TopNavigator />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/" exact component={Home} />
-        <Route component={FallBack} />
-      </Switch>
+      <Provider store={store}>
+        <TopNavigator />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/mask" component={Mask} />
+          <RedirectWithStatus status={404} from={"*"} to="/fallback" />
+        </Switch>
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+// 404 페이지 관련해서는 추후 아래 링크 참고
+// https://reactrouter.com/web/guides/quick-start
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

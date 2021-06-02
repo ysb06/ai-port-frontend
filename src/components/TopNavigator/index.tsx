@@ -1,20 +1,23 @@
 import React, {  } from 'react';
 import { Nav, Navbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 import './style.css'
 
 const TopNavigator: React.FC = () => {
     return (
         <Navbar bg="primary" variant="dark" expand="lg" fixed="top">
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Brand className="ml-3 mr-auto pr-5" href="/"><span className="nav-title">AI Proj.</span></Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />      {/* 메뉴 토글 버튼 */}
+            <Navbar.Brand className="ml-3 mr-auto pr-5" href="/">
+                <span className="nav-title">AI Proj.</span>
+            </Navbar.Brand>     {/* 페이지 메인 아이콘 */}
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="/chatbot">Frontend (React)</Nav.Link>
-                    <Nav.Link href="/chatbot">Chatbot</Nav.Link>
-                    <Nav.Link href="/translation">Translation</Nav.Link>
+                    <Link className="nav-link" to="/mask">Image Classification</Link>
+                    <Link className="nav-link" to="/chatbot">Chatbot (DST)</Link>
+                    <Link className="nav-link" to="/dkt">DKT</Link>
                 </Nav>
-            </Navbar.Collapse>
+            </Navbar.Collapse>      {/* 메뉴 리스트, 열고 닫기 */}
             <Nav className="mr-3">
                 <Nav.Link target="_blank" href="https://github.com/ysb06">
                     <svg className="nav-icon" viewBox="0 0 16 16">
@@ -22,7 +25,7 @@ const TopNavigator: React.FC = () => {
                     </svg>
                     My Github
                 </Nav.Link>
-            </Nav>
+            </Nav>      {/* 프로필 */}
         </Navbar>
     )
 }

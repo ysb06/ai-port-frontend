@@ -1,0 +1,23 @@
+#mask-page .jumbotron {
+    text-align: center;
+}
+
+#mask-page .jumbotron h1 {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+#mask-page .markdown {
+    margin: 50px 0;
+}
+
+#mask-page .cs-vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+#mask-page .cs-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
