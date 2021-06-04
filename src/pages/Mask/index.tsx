@@ -1,11 +1,14 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { Card, Container, Jumbotron, Nav, Row, Col, Figure, Form } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
-import { Card, Container, Jumbotron, Nav, Row, Col, Alert, Figure, Form } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux';
+
 import { RootState } from '../../store'
 import { increase } from '../../store/module/counter'
-import { registerImage } from '../../store/module/maskDetector'
+import { registerImage, setDetectingResult } from '../../store/module/maskDetector'
+
+import MaskIndicator from '../../components/Mask/ResultIndicator'
 
 import './style.css';
 
@@ -41,7 +44,15 @@ const Mask: React.FC = () => {
                 method: "POST",
                 body: formData
             }
-            fetch("http://127.0.0.1:5001/mask-detector/", options).then((res) => console.log(res))
+            // 지금은 이미지 올리자마자 바로 요청하는데
+            // 페이지를 로딩 상태로 변경하고 fetch
+            // 데이터를 받으면 로딩 상태를 제거
+            fetch("http://35.197.50.132:5001/mask-detector/", options)            
+                .then(res => res.json())
+                .then(data => {
+                    console.log("Received: " + data)
+                    dispatch(setDetectingResult(data.result))
+                });
         }
         dispatch(increase())
     }
@@ -92,9 +103,7 @@ const Mask: React.FC = () => {
                                         </Form>
                                     </Col>
                                     <Col>
-                                        <Alert className="m-0" variant="dark">
-                                            <Alert.Heading className="text-center m-0">마스크 이미지 없음</Alert.Heading>
-                                        </Alert>
+                                        <MaskIndicator value={maskDetector.result} />
                                     </Col>
                                 </Row>
                             </Container>
