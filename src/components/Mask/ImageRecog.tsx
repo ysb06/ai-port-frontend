@@ -18,8 +18,9 @@ const ImageRecog: React.FC = () => {
     const onReceiveResponse = (res: Response) => {
         res.json().then(
             data => {
-                console.log("Received: " + data)
                 dispatch(setDetectingResult(data.result))
+                console.log("Receiveing...")
+                console.log(data)
             }
         )
     }
@@ -35,6 +36,8 @@ const ImageRecog: React.FC = () => {
                 body: formData
             }
 
+            console.log("Transmitting...")
+            console.log(options)
             dispatch(setDetectingResult(MaskDetectorResult.Calculating))
             fetch(SERVER_ADDRESS + "mask-detector/", options).then(onReceiveResponse)
         }
@@ -46,11 +49,10 @@ const ImageRecog: React.FC = () => {
             <Container>
                 <Row>
                     <Col className="cs-center">
-                        <Figure>
+                        <Figure className="cs-webcam fix-height">
                             <Figure.Image
-                                width={400}
-                                height={400}
-                                src={maskDetector.targetURL? maskDetector.targetURL : ""}
+                                className="cs-maximize"
+                                src={maskDetector.sourceURL? maskDetector.sourceURL : ""}
                             >
                             </Figure.Image>
                         </Figure>
@@ -63,7 +65,7 @@ const ImageRecog: React.FC = () => {
                         <Form encType="multipart/form-data">
                             <Form.File
                                 id="custom-file"
-                                label={maskDetector.targetFile? maskDetector.targetFile.name : ""}
+                                label={maskDetector.source? maskDetector.sourceName : ""}
                                 accept="image/png, image/jpeg"
                                 custom
                                 onChange={onSelectImage}

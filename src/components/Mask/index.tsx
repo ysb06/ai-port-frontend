@@ -28,6 +28,7 @@ const markdown = `
 [Google]: http://www.google.com
 `
 export const SERVER_ADDRESS = "https://server.aiport.kr/"
+// export const SERVER_ADDRESS = "http://localhost:5001/"
 
 const Mask: React.FC = () => {
     const counter = useSelector((state: RootState) => state.counter)

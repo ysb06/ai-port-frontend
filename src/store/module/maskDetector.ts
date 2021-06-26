@@ -11,9 +11,9 @@ export type MaskDetectorResult = typeof MaskDetectorResult[keyof typeof MaskDete
 const SET_IMAGE = 'maskDetector/REGISTER' as const;
 const SET_DETECTING_RESULT = 'maskDetector/SET_RESULT' as const;
 
-export const registerImage = (file: File) => ({
+export const registerImage = (source: File | Blob | null) => ({
     type: SET_IMAGE,
-    file: file
+    source: source
 })
 
 export const setDetectingResult = (result: MaskDetectorResult) => ({
@@ -26,14 +26,16 @@ type MaskDetectorAction =
   | ReturnType<typeof setDetectingResult>
 
 type MaskDetectorState = {
-    targetFile: File | null,
-    targetURL: string | null,
+    source: File | Blob | null,
+    sourceName: string,
+    sourceURL: string | null,
     result: MaskDetectorResult
 };
 
 const initialState: MaskDetectorState = {
-    targetFile: null,
-    targetURL: "",
+    source: null,
+    sourceName: "",
+    sourceURL: "",
     result: MaskDetectorResult.Nothing,
 }
 
@@ -41,20 +43,23 @@ function maskDetector(state: MaskDetectorState=initialState, action: MaskDetecto
     switch (action.type) {
         case SET_IMAGE:
             return { 
-                targetFile: action.file,
-                targetURL: state.targetFile? URL.createObjectURL(state.targetFile) : null,
+                source: action.source,
+                sourceName: action.source instanceof File? action.source.name : "",
+                sourceURL: action.source? URL.createObjectURL(action.source) : null,
                 result: state.result
             }
         case SET_DETECTING_RESULT:
             return { 
-                targetFile: state.targetFile,
-                targetURL: state.targetFile? URL.createObjectURL(state.targetFile) : null,
+                source: state.source,
+                sourceName: state.source instanceof File? state.source.name : "",
+                sourceURL: state.source? URL.createObjectURL(state.source) : null,
                 result: action.result
             }
         default:
             return { 
-                targetFile: state.targetFile,
-                targetURL: state.targetFile? URL.createObjectURL(state.targetFile) : null,
+                source: state.source,
+                sourceName: state.source instanceof File? state.source.name : "",
+                sourceURL: state.source? URL.createObjectURL(state.source) : null,
                 result: state.result
             }
     }
