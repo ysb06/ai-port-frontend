@@ -1,12 +1,22 @@
-const REGISTER_IMAGE = 'maskDetector/REGISTER' as const;
+export const MaskDetectorResult = {
+    Nothing: -2,
+    Calculating: -1,
+    Good: 0,
+    Bad: 1,
+    NoMask: 2
+} as const;
+// eslint-disable-next-line
+export type MaskDetectorResult = typeof MaskDetectorResult[keyof typeof MaskDetectorResult]
+
+const SET_IMAGE = 'maskDetector/REGISTER' as const;
 const SET_DETECTING_RESULT = 'maskDetector/SET_RESULT' as const;
 
 export const registerImage = (file: File) => ({
-    type: REGISTER_IMAGE,
+    type: SET_IMAGE,
     file: file
 })
 
-export const setDetectingResult = (result: number) => ({
+export const setDetectingResult = (result: MaskDetectorResult) => ({
     type: SET_DETECTING_RESULT,
     result: result
 })
@@ -16,40 +26,35 @@ type MaskDetectorAction =
   | ReturnType<typeof setDetectingResult>
 
 type MaskDetectorState = {
-    target: File | null,
-    targetName: string,
-    targetURL: string,
-    result: number
+    targetFile: File | null,
+    targetURL: string | null,
+    result: MaskDetectorResult
 };
 
 const initialState: MaskDetectorState = {
-    target: null,
-    targetName: "",     // target에 종속
-    targetURL: "",      // target에 종속, 이 부분도 컴포넌트에 포함시키고 삭제할 것
-    result: -1,
+    targetFile: null,
+    targetURL: "",
+    result: MaskDetectorResult.Nothing,
 }
 
 function maskDetector(state: MaskDetectorState=initialState, action: MaskDetectorAction): MaskDetectorState {
     switch (action.type) {
-        case REGISTER_IMAGE:
+        case SET_IMAGE:
             return { 
-                target: action.file,
-                targetName: action.file.name,
-                targetURL: URL.createObjectURL(action.file),
+                targetFile: action.file,
+                targetURL: state.targetFile? URL.createObjectURL(state.targetFile) : null,
                 result: state.result
             }
         case SET_DETECTING_RESULT:
             return { 
-                target: state.target,
-                targetName: state.target? state.target.name : "",
-                targetURL: state.target? URL.createObjectURL(state.target) : "",
+                targetFile: state.targetFile,
+                targetURL: state.targetFile? URL.createObjectURL(state.targetFile) : null,
                 result: action.result
             }
         default:
             return { 
-                target: state.target,
-                targetName: state.target? state.target.name : "",
-                targetURL: state.target? URL.createObjectURL(state.target) : "",
+                targetFile: state.targetFile,
+                targetURL: state.targetFile? URL.createObjectURL(state.targetFile) : null,
                 result: state.result
             }
     }

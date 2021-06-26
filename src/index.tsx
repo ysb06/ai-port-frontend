@@ -7,10 +7,10 @@ import { createStore } from 'redux';
 
 import rootReducer from './store';
 
-import Home from './pages/Home'
-import { RedirectWithStatus } from './pages/FallBack'
-import TopNavigator from './components/TopNavigator';
-import Mask from './pages/Mask';
+import Home from './components/Home'
+import { RedirectWithStatus } from './components/FallBack'
+import TopNavigator from './components/common/TopNavigator';
+import Mask from './components/Mask';
 
 import "bootswatch/dist/flatly/bootstrap.min.css";
 import './index.css';
