@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import { Card, Container, Jumbotron, Nav } from 'react-bootstrap'
 import ReactMarkdown from 'react-markdown'
-import gfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 
 import { RootState } from '../../store'
 
@@ -11,28 +11,13 @@ import CamRecog from './CamRecog'
 
 import './style.css';
 
-
-const markdown = `
-# 개요
-
-이 모델은 마스크 이미지를 넣으면 이미지 내 인물이 마스크를 착용했는지 여부를 판단할 수 있습니다.
-
-## not OK
-### very not ok
-**Just a link**: [React](https://reactjs.com).
-
-*Simple*: [Google]
-
-> 인용문
-
-[Google]: http://www.google.com
-`
-export const SERVER_ADDRESS = "https://server.aiport.kr/"
-// export const SERVER_ADDRESS = "http://localhost:5001/"
+// export const SERVER_ADDRESS = "https://server.aiport.kr/"
+export const SERVER_ADDRESS = "http://localhost:5000/"
 
 const Mask: React.FC = () => {
     const counter = useSelector((state: RootState) => state.counter)
     const [mode, setMode] = useState(0);
+    const [markdown, setMarkdown] = useState("")
 
     let workBody = <div></div>
     switch(mode) {
@@ -44,11 +29,15 @@ const Mask: React.FC = () => {
             break
     }
 
+    if (markdown === "") {
+        fetch('/markdown/image.md').then((res) => res.text()).then((text) => { setMarkdown(text) })
+    }
+
     return (
-        <div id="mask-page">
+        <div id="mask-page" className="page">
             <Container className="p-3">
                 <Jumbotron className="mb-2">
-                    <h1>이미지 인식 (Image)</h1>
+                    <h1>이미지 분류 (CV)</h1>
                 </Jumbotron>
             </Container>
             <Container>
@@ -67,7 +56,7 @@ const Mask: React.FC = () => {
                 </Card>
             </Container>
             <Container>
-                <ReactMarkdown className="markdown" remarkPlugins={[gfm]}>
+                <ReactMarkdown className="markdown" rehypePlugins={[rehypeRaw]}>
                     {markdown}
                 </ReactMarkdown>
                 <div>

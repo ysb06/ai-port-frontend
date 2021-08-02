@@ -1,0 +1,21 @@
+#profile-page .title-name {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#profile-page .contact-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#profile-page .contact-element-title {
+    width: 3rem;
+    margin-right: 1rem;
+    font-weight: bold;
+}
+
+#profile-page .common-info img {
+    width: 100%;
+    min-width: 240px;
+}

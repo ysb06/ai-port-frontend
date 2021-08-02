@@ -1,0 +1,24 @@
+.page .jumbotron {
+    text-align: center;
+}
+
+.page .jumbotron h1 {
+    font-size: 2.5rem;
+    line-height: 1;
+}
+
+.page .cs-vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+.page .cs-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page .cs-max {
+    width: 100%;
+    height: 100%;
+}

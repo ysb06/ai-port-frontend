@@ -57,13 +57,13 @@ const CamRecog: React.FC = () => {
     let capButtonComp = <div />
     if (imgSrc === "") {
         imageComp = <Webcam 
-                        className="cs-webcam"
+                        className="webcam"
                         ref={webcamRef}
                         screenshotFormat="image/png"
                     />
-        capButtonComp = <Button className="cs-max" variant="outline-primary" onClick={onCapture}>카메라 촬영 및 분석</Button>
+        capButtonComp = <Button className="cs-max" variant="outline-primary" onClick={onCapture}>카메라 촬영 및 분석하기</Button>
     } else {
-        imageComp = <Figure className="cs-webcam">
+        imageComp = <Figure className="webcam">
                         <Figure.Image
                             className="cs-max"
                             src={imgSrc}

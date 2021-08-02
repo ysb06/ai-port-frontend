@@ -8,12 +8,17 @@ import { createStore } from 'redux';
 import rootReducer from './store';
 
 import Home from './components/Home'
+import Profile from './components/Profile'
 import { RedirectWithStatus } from './components/FallBack'
 import TopNavigator from './components/common/TopNavigator';
 import Mask from './components/Mask';
+import Chatbot from './components/Chatbot';
+import DKT from './components/DKT';
 
 import "bootswatch/dist/flatly/bootstrap.min.css";
 import './index.css';
+import './markdown.css';
+import './page.css';
 
 const store = createStore(rootReducer)
 
@@ -24,7 +29,10 @@ ReactDOM.render(
         <TopNavigator />
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/profile" component={Profile} />
           <Route path="/mask" component={Mask} />
+          <Route path="/chatbot" component={Chatbot} />
+          <Route path="/dkt" component={DKT} />
           <RedirectWithStatus status={404} from={"*"} to="/fallback" />
         </Switch>
       </Provider>
