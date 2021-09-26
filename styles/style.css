@@ -1,0 +1,59 @@
+.github-icon {
+    width: 1rem;
+    margin-right: 0.5rem;
+    padding-bottom: 0.25rem;
+}
+
+.top-nav-button {
+    min-width: 75px;
+}
+
+.top-nav-dropdown {
+    min-width: 125px;
+}
+
+.top-nav-container {
+    padding: 0 10px !important;
+    max-width: none;
+}
+
+.dropdown-animation {
+    animation: growDown 500ms ease-in-out forwards;
+    transform-origin: top center
+}
+
+.dropdown-item-animation {
+    animation: rotateZ 500ms ease-in-out forwards;
+    transform-origin: top center
+}
+
+.test {
+    content: "\f09b";
+}
+
+
+@media (min-width: 992px) {
+    .top-nav-item {
+        text-align: center;
+    }
+}
+
+@keyframes growDown {
+    0% { transform: rotateX(-90deg) }
+    70% { transform: rotateX(20deg) }
+    100% { transform: rotateX(0deg) }
+}
+
+@keyframes rotateZ {
+    0% {
+      opacity: 0;
+      transform: translateZ(290px);
+    }
+    80% {
+      transform: translateZ(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateZ(0);
+    }
+}
