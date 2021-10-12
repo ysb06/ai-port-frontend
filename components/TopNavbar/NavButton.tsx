@@ -8,7 +8,7 @@ interface NavItemProps {
 
 const NavButton = (props: NavItemProps) => {
     return (
-        <li className="nav-item top-nav-item top-nav-button">
+        <li className="nav-item top-nav-button">
             <Link href={props.link} passHref>
                 <a className="nav-link">
                     {props.text}

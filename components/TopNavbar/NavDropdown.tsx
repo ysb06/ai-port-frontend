@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 interface NavDropdownProps {
     text: string,
-    children: JSX.Element[] | JSX.Element,
+    children: JSX.Element[] | JSX.Element
 }
 
 // 외부 클릭 시 show하지 않기 위해서는 
@@ -19,7 +19,7 @@ const NavDropdown = (props: NavDropdownProps) => {
     }
 
     return (
-        <li className="nav-item dropdown top-nav-item top-nav-dropdown">
+        <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="#" 
                 onClick={() => {setShow(!show)}}
                 onMouseUp={() => {console.log("Up Up Up!")}}>

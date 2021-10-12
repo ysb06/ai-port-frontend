@@ -1,20 +1,8 @@
-.github-icon {
+/* ----------------------------- 공통 (추후 Global로 옮기기) ----------------------------- */
+.svg-icon {
     width: 1rem;
     margin-right: 0.5rem;
     padding-bottom: 0.25rem;
-}
-
-.top-nav-button {
-    min-width: 75px;
-}
-
-.top-nav-dropdown {
-    min-width: 125px;
-}
-
-.top-nav-container {
-    padding: 0 10px !important;
-    max-width: none;
 }
 
 .dropdown-animation {
@@ -27,17 +15,100 @@
     transform-origin: top center
 }
 
-.test {
-    content: "\f09b";
+/* ----------------------------- Top Navigation ----------------------------- */
+#top-nav .nav-item {
+    min-width: 75px;
 }
 
+#top-nav .dropdown {
+    min-width: 125px;
+}
+
+#top-nav .navbar-toggler {
+    margin: 10px;
+}
 
 @media (min-width: 992px) {
-    .top-nav-item {
+    #top-nav .nav-item {
         text-align: center;
+    }
+
+    #navbarResponsive {
+        animation: none;
     }
 }
 
+/* ------------------------------------------------------------- */
+
+.ai-show-window {
+    margin: 2em 0;
+    padding: 2em 0;
+}
+
+.ai-show-window .card {
+    max-width: 350px;
+}
+
+.ai-show-window .card-img-top {
+    background-color: white;
+}
+
+/* ------------------------------------------------------------- */
+
+#board h1 {
+    margin-bottom: 1rem;
+}
+
+#board .write-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#board .text-content {
+    border-top: white 1px solid;
+    border-bottom: whitesmoke 1px solid;
+    min-height: 50vh;
+}
+
+#board .delete-panel {
+    max-width: 53rem;
+}
+
+#board label {
+    margin-right: 1rem;
+    min-width: 3rem;
+}
+
+#board input {
+    margin-right: 8px;
+}
+
+/* ------------------------------------------------------------- */
+
+#board-write label {
+    margin-right: 1rem;
+    min-width: 5rem;
+}
+
+#board-write .title {
+    display: flex;
+}
+
+#board-write .title input {
+    flex-grow: 1;
+}
+
+#board-write .content-container {
+    margin: auto;
+}
+
+#board-write textarea {
+    width: 100%;
+    height: 50vh;
+}
+
+
+/* ------------------------------------------------------------- */
 @keyframes growDown {
     0% { transform: rotateX(-90deg) }
     70% { transform: rotateX(20deg) }

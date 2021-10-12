@@ -4,7 +4,7 @@ import NavButton from './NavButton';
 import NavDropdown from './NavDropdown';
 import NavDropdownDivider from './NavDropdownDivider';
 import NavDropdownItem from './NavDropdownItem';
-import NavSpecialLinks from './NavSpecialLinks';
+import { NavGithubButton } from './NavSpecialLinks';
 
 const TopNavbar = () => {
     const [show, setShow] = useState(false);
@@ -15,27 +15,33 @@ const TopNavbar = () => {
     }
 
     return (
-        <div className="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
-            <div className="container top-nav-container">
-                <BrandText text="AI Port" />
+        <div id="top-nav" className="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+            <div className="container">
                 <button className="navbar-toggler collapsed" type="button"
-                    onClick={() => {setShow(!show)}}
+                    onClick={() => { setShow(!show) }}
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
+                <BrandText text="AI Port" />
                 <div className={TopNavbarStyle} id="navbarResponsive">
                     <ul className="navbar-nav">
                         <NavDropdown text="AI Demos">
-                            <NavDropdownItem link="http://naver.com" text="Test" />
+                            <NavDropdownItem link="/mask" text="마스크 인식" />
                             <NavDropdownDivider />
-                            <NavDropdownItem link="http://naver.com" text="Test" />
-                            <NavDropdownItem link="http://naver.com" text="Test" />
+                            <NavDropdownItem link="#" text="준비 중" />
                         </NavDropdown>
+                        <NavButton link="/board" text="게시판" />
                         <NavButton link="/next" text="Next" />
-                        <NavButton link="/next" text="게시판" />
                     </ul>
-                    <NavSpecialLinks />
+                    <ul className="navbar-nav ms-md-auto">
+                        <NavGithubButton />
+                    </ul>
                 </div>
+                {/* <ul className="navbar-nav ms-md-auto">
+                    <NavButton link="/next" text="로그인" />
+                </ul> */}
+                {/* 추후 작은 화면에서 로그인 버튼 순서 변경하기 */}
+                {/* 메뉴 외부 눌렀을 때 모든 네비게이션 상태 초기화 */}
             </div>
         </div>
     )
