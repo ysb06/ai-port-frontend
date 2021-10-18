@@ -107,6 +107,36 @@
     height: 50vh;
 }
 
+/* ------------------------------------------------------------- */
+
+#mask-detector .shoot-button {
+    width: 100%;
+    margin: 1rem auto 0 auto;
+}
+
+#mask-detector .webcam {
+    max-width: 100%;
+    margin: 0;
+}
+
+#mask-detector .info {
+    display: inline-block;
+    min-width: 10rem;
+}
+
+#mask-detector .spinner-border {
+    max-width: 1rem;
+    max-height: 1rem;
+    margin: 0 5px;
+}
+
+/* ------------------------------------------------------------- */
+
+#profile .contact-element-title {
+    display: inline-block;
+    min-width: 7rem;
+    font-weight: bold;
+}
 
 /* ------------------------------------------------------------- */
 @keyframes growDown {

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 interface NavDropdownItemProps {
@@ -7,7 +8,9 @@ interface NavDropdownItemProps {
 
 const NavDropdownItem = (props: NavDropdownItemProps) => {
     return (
-        <a className="dropdown-item dropdown-item-animation" href={props.link}>{props.text}</a>
+        <Link href={props.link} passHref>
+            <a className="dropdown-item dropdown-item-animation" href={props.link}>{props.text}</a>
+        </Link>
     )
 }
 

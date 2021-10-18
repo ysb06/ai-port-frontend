@@ -1,8 +1,11 @@
 import type { AppProps } from 'next/app'
+import PageLayout from '../layouts/PageLayout'
+import wrapper from '../store'
+
 import '/styles/globals.css'
 import '/styles/bootstrap.css'
 import '/styles/style.css'
-import PageLayout from '../layouts/PageLayout'
+
 
 function MyApp({ Component, pageProps }: AppProps) {
   return  (
@@ -11,4 +14,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   </PageLayout>
   )
 }
-export default MyApp
+export default wrapper.withRedux(MyApp)

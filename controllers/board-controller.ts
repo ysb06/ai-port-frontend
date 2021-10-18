@@ -13,17 +13,36 @@ interface IPostList {
     activated: boolean,
     up_vote: number,
     content: string,
-    author: { 
-        name: string, 
+    author: {
+        name: string,
         id: number | null
     },
     title: string
 }
 
+interface ICredential {
+    databaseurl: string;
+    credential: {
+        privateKey: string;
+        clientEmail: string;
+        projectId: string;
+    };
+}
+
+const config: ICredential = {
+    databaseurl: process.env.databaseurl || '',
+    credential: {
+        privateKey: (process.env.privateKey || '').replace(/\\n/g, '\n'),
+        clientEmail: process.env.clientEmail || '',
+        projectId: process.env.projectId || '',
+    },
+};
+
 // DB 사용을 위한 Firebase 초기화
-if (process.env.credential !== undefined && admin.apps.length <= 0) {
+if (admin.apps.length <= 0) {
     admin.initializeApp({
-        credential: admin.credential.cert(JSON.parse(process.env.credential))
+        databaseURL: config.databaseurl,
+        credential: admin.credential.cert(config.credential)
     });
     console.log('Firebase initialized')
 }
@@ -42,7 +61,7 @@ export async function queryPostList(req: NextApiRequest) {
         data.id = element.id
         return data
     })
-    
+
     return {
         items: resultData,
         page: 1
@@ -125,7 +144,7 @@ export async function deletePost(req: NextApiRequest) {
 
     const db = admin.firestore();
     const postRef = db.collection(BOARD_COLLECTION_NAME).doc(req.query.articleId as string)
-    
+
     await postRef.update({
         activated: false
     })

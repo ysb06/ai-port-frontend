@@ -4,8 +4,12 @@ import { GetServerSideProps, NextPage } from "next"
 import { useState } from 'react'
 import { TimeStamp } from "../../../controllers/interfaces/firebase-interfaces"
 import { convertDate } from "../../../utils/date-converter"
-import { MouseEventHandler } from 'hoist-non-react-statics/node_modules/@types/react';
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 
+// Todo: 비밀번호 기능
+// Todo: 로그인 기능
+// Todo: 글 수정 기능 (코드 정리 포함)
 
 interface IBoardArticleProps {
     id: string
@@ -55,9 +59,18 @@ const BoardArticle: NextPage<IBoardArticleProps> = (props: IBoardArticleProps) =
                         </span>
                     </div>
                 </div>
-                <div className="row text-content p-2">
+                <div className="row text-content py-3">
                     <div style={{ whiteSpace: "pre-wrap" }}>
-                        {props.content.text}
+                        <ReactMarkdown 
+                            className="markdown" 
+                            components={{
+                                h1: 'span',
+                                h2: 'span'
+                            }}
+                            rehypePlugins={[rehypeRaw]}
+                        >
+                            {props.content.text}
+                        </ReactMarkdown>
                     </div>
                 </div>
             </article>

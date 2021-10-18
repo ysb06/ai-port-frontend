@@ -25,13 +25,13 @@ const TopNavbar = () => {
                 <BrandText text="AI Port" />
                 <div className={TopNavbarStyle} id="navbarResponsive">
                     <ul className="navbar-nav">
+                        <NavButton link="/profile" text="프로필" />
                         <NavDropdown text="AI Demos">
                             <NavDropdownItem link="/mask" text="마스크 인식" />
                             <NavDropdownDivider />
                             <NavDropdownItem link="#" text="준비 중" />
                         </NavDropdown>
-                        <NavButton link="/board" text="게시판" />
-                        <NavButton link="/next" text="Next" />
+                        <NavButton link="/board" text="자유게시판" />
                     </ul>
                     <ul className="navbar-nav ms-md-auto">
                         <NavGithubButton />
@@ -41,7 +41,6 @@ const TopNavbar = () => {
                     <NavButton link="/next" text="로그인" />
                 </ul> */}
                 {/* 추후 작은 화면에서 로그인 버튼 순서 변경하기 */}
-                {/* 메뉴 외부 눌렀을 때 모든 네비게이션 상태 초기화 */}
             </div>
         </div>
     )

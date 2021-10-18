@@ -22,6 +22,9 @@ const BoardWrite: NextPage = () => {
                 <div className="mt-3">
                     <textarea name="content" />
                 </div>
+                <div>
+                    ※ 본문에는 마크다운이 지원됩니다. 단, 제목은 '###'부터 시작해 주세요. '#', '##'은 무시됩니다.
+                </div>
                 <div className="mt-3">
                     <input type="submit" value="글 등록하기"></input>
                 </div>
